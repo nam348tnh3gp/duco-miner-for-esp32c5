@@ -1,0 +1,30 @@
+{
+  "build": {
+    "arduino": {
+      "ldscript": "esp32c3.ld"
+    },
+    "core": "esp32",
+    "cpu": "riscv",
+    "extra_flags": "-DARDUINO_ESP32C5 -DRISCV",
+    "f_cpu": "240000000L",
+    "mcu": "esp32c5",
+    "variant": "esp32c5"
+  },
+  "connectivity": ["wifi", "ble"],
+  "debug": {
+    "openocd_target": "esp32c5.cfg",
+    "tool": "esp-builtin"
+  },
+  "frameworks": ["arduino", "espidf"],
+  "name": "ESP32-C5 DevKitC",
+  "upload": {
+    "flash_size": "4MB",
+    "maximum_ram_size": 327680,
+    "maximum_size": 4194304,
+    "require_upload_port": true,
+    "speed": 921600,
+    "tool": "esptool"
+  },
+  "url": "https://www.espressif.com/en/products/devkits/esp32-c5-devkitc",
+  "vendor": "Espressif"
+}
