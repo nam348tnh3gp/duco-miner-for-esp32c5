@@ -23,6 +23,24 @@ jobs:
         python -m pip install --upgrade pip
         pip install platformio
     
+    - name: Prepare source files
+      run: |
+        # Tạo thư mục src
+        mkdir -p src
+        
+        # Copy tất cả file .ino, .h, .cpp vào src
+        cp *.ino src/ 2>/dev/null || true
+        cp *.h src/ 2>/dev/null || true
+        cp *.cpp src/ 2>/dev/null || true
+        
+        # Copy thư mục boards nếu có
+        cp -r boards src/ 2>/dev/null || true
+        
+        # Hiển thị cấu trúc để debug
+        echo "=== Source files ==="
+        ls -la src/
+        echo "==================="
+    
     - name: Build for ESP32-C5
       run: pio run -e esp32-c5
     
