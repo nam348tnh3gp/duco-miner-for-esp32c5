@@ -1,9 +1,7 @@
-name: Build ESP32-C5 with Arduino CLI
+name: Build ESP32-C5 with PlatformIO
 
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
     branches: [ main, master ]
   workflow_dispatch:
 
@@ -15,44 +13,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     
-    - name: Install Arduino CLI
-      run: |
-        curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
-        echo "$(pwd)/bin" >> $GITHUB_PATH
-        export PATH="$PATH:$(pwd)/bin"
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
     
-    - name: Install ESP32 core (latest version)
+    - name: Install PlatformIO
       run: |
-        export PATH="$PATH:$(pwd)/bin"
-        arduino-cli config init
-        arduino-cli config set board_manager.additional_urls https://espressif.github.io/arduino-esp32/package_esp32_dev_index.json
-        arduino-cli core update-index
-        # Liệt kê các phiên bản có sẵn
-        arduino-cli core search esp32 --all
-        # Cài đặt phiên bản mới nhất (3.2.0 hoặc 3.1.0)
-        arduino-cli core install esp32:esp32@3.2.0
-        # Hoặc nếu 3.2.0 chưa có, dùng:
-        # arduino-cli core install esp32:esp32@3.1.0
+        python -m pip install --upgrade pip
+        pip install platformio
     
-    - name: Prepare sketch
-      run: |
-        if [ -f "ESP_Code.ino" ]; then
-          mv ESP_Code.ino duco-miner-for-esp32c5.ino
-        fi
-        ls -la
-    
-    - name: Compile for ESP32-C5
-      run: |
-        export PATH="$PATH:$(pwd)/bin"
-        # Liệt kê các board có sẵn để tìm đúng FQBN
-        arduino-cli board listall esp32
-        # Thử compile với board esp32c5 (nếu có)
-        arduino-cli compile --fqbn esp32:esp32:esp32c5 --build-path ./build . || \
-        arduino-cli compile --fqbn esp32:esp32:esp32c3 --build-path ./build .
+    - name: Build for ESP32-C5
+      run: pio run -e esp32-c5
     
     - name: Upload firmware artifact
       uses: actions/upload-artifact@v4
       with:
-        name: esp32c5-firmware
-        path: ./build/*.bin
+        name: esp32-c5-firmware
+        path: .pio/build/esp32-c5/*.bin
         retention-days: 30
