@@ -25,28 +25,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install platformio
     
-    - name: Update PlatformIO
-      run: pio update
-    
     - name: Build for ESP32-C5
       run: pio run
-    
-    - name: List build artifacts
-      run: ls -la .pio/build/esp32-c5/
     
     - name: Upload firmware artifact
       uses: actions/upload-artifact@v4
       with:
-        name: esp32-c5-firmware
-        path: |
-          .pio/build/esp32-c5/*.bin
-          .pio/build/esp32-c5/*.elf
+        name: esp32c5-firmware
+        path: .pio/build/esp32c5/*.bin
         retention-days: 30
-    
-    - name: Upload to release
-      if: startsWith(github.ref, 'refs/tags/')
-      uses: softprops/action-gh-release@v1
-      with:
-        files: .pio/build/esp32-c5/*.bin
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
