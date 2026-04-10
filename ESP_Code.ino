@@ -48,10 +48,11 @@
 
 // No display includes - for maximum performance
 
-#if !defined(ESP8266) && defined(DISABLE_BROWNOUT)
-    #include "soc/soc.h"
-    #include "soc/rtc_cntl_reg.h"
-#endif
+// ESP32-C5 doesn't need brownout detection
+// #if !defined(ESP8266) && defined(DISABLE_BROWNOUT)
+//     #include "soc/soc.h"
+//     #include "soc/rtc_cntl_reg.h"
+// #endif
 
 // Core configuration - ESP32-C5 is single core RISC-V
 #define CORE 1
@@ -360,9 +361,10 @@ namespace {
 MiningJob *job;
 
 void setup() {
-    #if !defined(ESP8266) && defined(DISABLE_BROWNOUT)
-        WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
-    #endif
+    // Brownout detection disabled for ESP32-C5 - not needed
+    // #if !defined(ESP8266) && defined(DISABLE_BROWNOUT)
+    //     WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
+    // #endif
     
     #if defined(SERIAL_PRINTING)
         Serial.begin(SERIAL_BAUDRATE);
