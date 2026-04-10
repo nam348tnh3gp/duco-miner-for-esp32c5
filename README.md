@@ -16,8 +16,6 @@
   <img src="https://img.shields.io/badge/PlatformIO-FF6600?style=for-the-badge&logo=platformio&logoColor=white">
 </p>
 
----
-
 ## 📋 **Table of Contents**
 
 - [✨ Features](#-features)
@@ -32,8 +30,6 @@
 - [🐛 Troubleshooting](#-troubleshooting)
 - [📜 License](#-license)
 
----
-
 ## ✨ **Features**
 
 | Feature | Status |
@@ -46,8 +42,6 @@
 | 📱 Serial Monitor Logging | ✅ |
 | 🖥️ No Display Required | ✅ |
 
----
-
 ## 📦 **Requirements**
 
 ### **Hardware:**
@@ -59,8 +53,6 @@
 - **PlatformIO** (via VS Code or CLI)
 - **Python 3.6+** (for CLI usage)
 - **Git** (to clone the repository)
-
----
 
 ## 🚀 **Installation & Setup**
 
@@ -90,8 +82,6 @@ cd duco-miner-for-esp32c5
 · Download driver from Espressif
 · Or let Windows Update find it automatically
 
----
-
 Linux (Ubuntu/Debian)
 
 1. Install Tools
@@ -116,8 +106,6 @@ git clone https://github.com/nam348tnh3gp/duco-miner-for-esp32c5.git
 cd duco-miner-for-esp32c5
 ```
 
----
-
 macOS
 
 1. Install Tools
@@ -139,8 +127,6 @@ pip3 install platformio
 git clone https://github.com/nam348tnh3gp/duco-miner-for-esp32c5.git
 cd duco-miner-for-esp32c5
 ```
-
----
 
 ⚙️ Configuration
 
@@ -172,8 +158,6 @@ LED_BLINKING LED blinks on share found ✅ Enabled
 SERIAL_PRINTING Print logs to Serial ✅ Enabled
 SERIAL_BAUDRATE Serial baud rate 500000
 DISABLE_BROWNOUT Disable brownout detector ✅ Enabled
-
----
 
 📤 Upload Firmware
 
@@ -212,8 +196,6 @@ Creating ESP32C5 image...
 Successfully created ESP32C5 image.
 ======================== [SUCCESS] Took 107.65 seconds ========================
 ```
-
----
 
 📊 Monitor Activity
 
@@ -288,14 +270,9 @@ Current usage: ~98.2% of 4MB flash. Disable unused features:
 // In Settings.h
 #define WEB_DASHBOARD  // Comment out to disable web server
 
-
----
-
 📜 License
 
 MIT License - The Duino-Coin Team & Community 2019-2026
-
----
 
 <p align="center">
   Made with ⚡ for the Duino-Coin community
