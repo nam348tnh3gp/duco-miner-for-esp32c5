@@ -3,7 +3,7 @@
   (  _ \(  )(  )(_  _)( \( )(  _  )___  / __)(  _  )(_  _)( \( )
    )(_) ))(__)(  _)(_  )  (  )(_)((___)( (__  )(_)(  _)(_  )  (
   (____/(______)(____)(_)\_)(_____)     \___)(_____)(____)(_)\_)
-  Official Duino-Coin Miner for ESP32-C5
+  UnOfficial Duino-Coin Miner for ESP32-C5
   Optimized - No Display - Maximum Performance
 
   The Duino-Coin Team & Community 2019-2024 © MIT Licensed
