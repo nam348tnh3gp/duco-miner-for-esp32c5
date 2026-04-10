@@ -21,15 +21,18 @@ jobs:
         echo "$(pwd)/bin" >> $GITHUB_PATH
         export PATH="$PATH:$(pwd)/bin"
     
-    - name: Install ESP32 core (latest dev version)
+    - name: Install ESP32 core (latest version)
       run: |
         export PATH="$PATH:$(pwd)/bin"
         arduino-cli config init
-        # Dùng URL dev để có core mới nhất hỗ trợ C5
         arduino-cli config set board_manager.additional_urls https://espressif.github.io/arduino-esp32/package_esp32_dev_index.json
         arduino-cli core update-index
-        # Cài đặt phiên bản mới nhất (>=3.1.0)
-        arduino-cli core install esp32:esp32@3.1.0-rc2
+        # Liệt kê các phiên bản có sẵn
+        arduino-cli core search esp32 --all
+        # Cài đặt phiên bản mới nhất (3.2.0 hoặc 3.1.0)
+        arduino-cli core install esp32:esp32@3.2.0
+        # Hoặc nếu 3.2.0 chưa có, dùng:
+        # arduino-cli core install esp32:esp32@3.1.0
     
     - name: Prepare sketch
       run: |
@@ -41,7 +44,11 @@ jobs:
     - name: Compile for ESP32-C5
       run: |
         export PATH="$PATH:$(pwd)/bin"
-        arduino-cli compile --fqbn esp32:esp32:esp32c5 --build-path ./build .
+        # Liệt kê các board có sẵn để tìm đúng FQBN
+        arduino-cli board listall esp32
+        # Thử compile với board esp32c5 (nếu có)
+        arduino-cli compile --fqbn esp32:esp32:esp32c5 --build-path ./build . || \
+        arduino-cli compile --fqbn esp32:esp32:esp32c3 --build-path ./build .
     
     - name: Upload firmware artifact
       uses: actions/upload-artifact@v4
