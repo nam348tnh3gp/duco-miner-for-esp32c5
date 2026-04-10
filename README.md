@@ -67,7 +67,7 @@
 ### **Windows**
 
 #### 1. Install Tools
-```powershell
+```
 # Install Python (if not installed)
 winget install Python.Python.3.11
 
@@ -80,7 +80,7 @@ pip install platformio
 
 2. Clone Repository
 
-```powershell
+```
 git clone https://github.com/nam348tnh3gp/duco-miner-for-esp32c5.git
 cd duco-miner-for-esp32c5
 ```
@@ -96,7 +96,7 @@ Linux (Ubuntu/Debian)
 
 1. Install Tools
 
-```bash
+```
 # Install Python and Git
 sudo apt update
 sudo apt install python3 python3-pip git -y
@@ -111,7 +111,7 @@ sudo usermod -a -G dialout $USER
 
 2. Clone Repository
 
-```bash
+```
 git clone https://github.com/nam348tnh3gp/duco-miner-for-esp32c5.git
 cd duco-miner-for-esp32c5
 ```
@@ -122,7 +122,7 @@ macOS
 
 1. Install Tools
 
-```bash
+```
 # Install Homebrew (if not installed)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -135,7 +135,7 @@ pip3 install platformio
 
 2. Clone Repository
 
-```bash
+```
 git clone https://github.com/nam348tnh3gp/duco-miner-for-esp32c5.git
 cd duco-miner-for-esp32c5
 ```
@@ -148,7 +148,7 @@ Edit Settings.h
 
 Open Settings.h with any text editor (Notepad, VS Code, Sublime, etc.):
 
-```cpp
+```
 // ---------------------- General settings ---------------------- //
 // Change to your Duino-Coin username
 extern char *DUCO_USER = "your_username_here";        // 👈 CHANGE username
@@ -191,13 +191,13 @@ macOS /dev/cu.usbmodem* ls /dev/cu.usb*
 
 Step 3: Flash Firmware
 
-```bash
+```
 pio run --target upload -e esp32-c5
 ```
 
 Specify port if needed:
 
-```bash
+```
 pio run --target upload -e esp32-c5 --upload-port COM3        # Windows
 pio run --target upload -e esp32-c5 --upload-port /dev/ttyUSB0 # Linux
 pio run --target upload -e esp32-c5 --upload-port /dev/cu.usbmodem* # macOS
@@ -219,7 +219,7 @@ Successfully created ESP32C5 image.
 
 Serial Monitor
 
-```bash
+```
 pio device monitor -e esp32-c5 -b 500000
 ```
 
@@ -257,7 +257,7 @@ Example: http://192.168.1.100
 
 Permission Denied (Linux/macOS)
 
-```bash
+```
 sudo chmod 666 /dev/ttyUSB0
 ```
 
@@ -284,10 +284,10 @@ Flash Memory Full
 
 Current usage: ~98.2% of 4MB flash. Disable unused features:
 
-```cpp
+
 // In Settings.h
 #define WEB_DASHBOARD  // Comment out to disable web server
-```
+
 
 ---
 
@@ -303,4 +303,3 @@ MIT License - The Duino-Coin Team & Community 2019-2026
   <a href="https://duinocoin.com">duinocoin.com</a> | 
   <a href="https://github.com/revoxhere/duino-coin">GitHub</a>
 </p>
-```
