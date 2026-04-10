@@ -21,28 +21,24 @@ jobs:
         echo "$(pwd)/bin" >> $GITHUB_PATH
         export PATH="$PATH:$(pwd)/bin"
     
-    - name: Verify Arduino CLI
-      run: |
-        export PATH="$PATH:$(pwd)/bin"
-        arduino-cli version
-    
-    - name: Install ESP32 core
+    - name: Install ESP32 core (latest dev version)
       run: |
         export PATH="$PATH:$(pwd)/bin"
         arduino-cli config init
+        # Dùng URL dev để có core mới nhất hỗ trợ C5
         arduino-cli config set board_manager.additional_urls https://espressif.github.io/arduino-esp32/package_esp32_dev_index.json
         arduino-cli core update-index
-        arduino-cli core install esp32:esp32@3.0.0
+        # Cài đặt phiên bản mới nhất (>=3.1.0)
+        arduino-cli core install esp32:esp32@3.1.0-rc2
     
     - name: Prepare sketch
       run: |
-        # Đổi tên file .ino thành tên trùng với thư mục
         if [ -f "ESP_Code.ino" ]; then
           mv ESP_Code.ino duco-miner-for-esp32c5.ino
         fi
         ls -la
     
-    - name: Compile sketch for ESP32-C5
+    - name: Compile for ESP32-C5
       run: |
         export PATH="$PATH:$(pwd)/bin"
         arduino-cli compile --fqbn esp32:esp32:esp32c5 --build-path ./build .
