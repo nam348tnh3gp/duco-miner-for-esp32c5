@@ -154,9 +154,13 @@ Advanced Options (Settings.h)
 
 Option Description Default
 WEB_DASHBOARD Enable web dashboard ✅ Enabled
+
 LED_BLINKING LED blinks on share found ✅ Enabled
+
 SERIAL_PRINTING Print logs to Serial ✅ Enabled
+
 SERIAL_BAUDRATE Serial baud rate 500000
+
 DISABLE_BROWNOUT Disable brownout detector ✅ Enabled
 
 📤 Upload Firmware
